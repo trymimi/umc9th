@@ -2,6 +2,7 @@ package com.example.umc.domain.member.entity;
 
 import com.example.umc.domain.member.enums.Gender;
 import com.example.umc.domain.member.enums.UserStatus;
+import com.example.umc.domain.mission.entity.UserMission;
 import com.example.umc.domain.review.entity.Review;
 import com.example.umc.domain.support.entity.UserSupport;
 import com.example.umc.domain.term.entity.UserTerm;
@@ -43,6 +44,9 @@ public class Member {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 20)
     private UserStatus status;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<UserMission> userMissions = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Review> reviews = new ArrayList<>();

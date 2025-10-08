@@ -19,7 +19,7 @@ public class UserSupport {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id2", nullable = false,
+    @JoinColumn(name = "user_id", nullable = false,
             foreignKey = @ForeignKey(name="fk_support_user"))
     private Member user;
 
