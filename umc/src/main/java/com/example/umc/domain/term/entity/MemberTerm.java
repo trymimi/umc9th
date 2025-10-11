@@ -5,20 +5,20 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 
-@Entity @Table(name = "user_term")
+@Entity @Table(name = "member_term")
 @Getter @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserTerm {
+public class MemberTerm {
 
     @EmbeddedId
-    private UserTermId id;
+    private MemberTermId id;
 
-    @MapsId("userId")
+    @MapsId("memberId")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_ut_user"))
-    private Member user;
+    @JoinColumn(name = "member_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_ut_member"))
+    private Member member;
 
     @MapsId("termId")
     @ManyToOne(fetch = FetchType.LAZY)

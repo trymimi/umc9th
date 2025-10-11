@@ -6,8 +6,9 @@ import java.io.Serializable;
 
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
+@EqualsAndHashCode
 @Embeddable
-public class UserMissionId implements Serializable {
-    private Long userId;
+public class MemberMissionId implements Serializable {
+    private Long memberId;
     private Long missionId;
 }

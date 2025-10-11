@@ -4,20 +4,20 @@ import com.example.umc.domain.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity @Table(name = "user_mission")
+@Entity @Table(name = "member_mission")
 @Getter @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserMission {
+public class MemberMission {
 
     @EmbeddedId
-    private UserMissionId id;
+    private MemberMissionId id;
 
-    @MapsId("userId")
+    @MapsId("memberId")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_um_user"))
-    private Member user;
+    @JoinColumn(name = "member_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_um_member"))
+    private Member member;
 
     @MapsId("missionId")
     @ManyToOne(fetch = FetchType.LAZY)

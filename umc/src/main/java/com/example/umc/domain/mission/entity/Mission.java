@@ -36,5 +36,5 @@ public class Mission {
     private MissionStatus status;
 
     @OneToMany(mappedBy = "mission", fetch = FetchType.LAZY)
-    private List<UserMission> userMissions = new ArrayList<>();
+    private List<MemberMission> memberMissions = new ArrayList<>();
 }

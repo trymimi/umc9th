@@ -7,7 +7,7 @@ import lombok.*;
 
 @Entity @Table(name = "reviews", indexes = {
         @Index(name="ix_review_store", columnList="store_id"),
-        @Index(name="ix_review_user", columnList="user_id")
+        @Index(name="ix_review_member", columnList="member_id")
 })
 @Getter @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,9 +24,9 @@ public class Review {
     private Store store;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false,
-            foreignKey = @ForeignKey(name="fk_review_user"))
-    private Member user;
+    @JoinColumn(name = "member_id", nullable = false,
+            foreignKey = @ForeignKey(name="fk_review_member"))
+    private Member member;
 
     @Column(name = "rating")
     private Integer rating;

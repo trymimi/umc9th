@@ -1,5 +1,5 @@
 package com.example.umc.domain.member.enums;
 
-public enum UserStatus {
+public enum MemberStatus {
     ACTIVE, INACTIVE, SUSPENDED;
 }

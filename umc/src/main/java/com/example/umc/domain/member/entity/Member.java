@@ -1,11 +1,11 @@
 package com.example.umc.domain.member.entity;
 
 import com.example.umc.domain.member.enums.Gender;
-import com.example.umc.domain.member.enums.UserStatus;
-import com.example.umc.domain.mission.entity.UserMission;
+import com.example.umc.domain.member.enums.MemberStatus;
+import com.example.umc.domain.mission.entity.MemberMission;
 import com.example.umc.domain.review.entity.Review;
-import com.example.umc.domain.support.entity.UserSupport;
-import com.example.umc.domain.term.entity.UserTerm;
+import com.example.umc.domain.support.entity.MemberSupport;
+import com.example.umc.domain.term.entity.MemberTerm;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity @Table(name = "member")
+@Entity @Table(name = "members")
 @Getter @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access =  AccessLevel.PRIVATE)
@@ -43,17 +43,17 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 20)
-    private UserStatus status;
+    private MemberStatus status;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<UserMission> userMissions = new ArrayList<>();
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<MemberMission> memberMissions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private List<Review> reviews = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<UserTerm> userTerms = new ArrayList<>();
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<MemberTerm> memberTerms = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<UserSupport> supports = new ArrayList<>();
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<MemberSupport> supports = new ArrayList<>();
 }

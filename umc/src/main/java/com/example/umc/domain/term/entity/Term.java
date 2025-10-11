@@ -3,7 +3,7 @@ package com.example.umc.domain.term.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity @Table(name = "term")
+@Entity @Table(name = "terms")
 @Getter @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
