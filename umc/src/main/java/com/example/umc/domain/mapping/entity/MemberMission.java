@@ -1,6 +1,9 @@
-package com.example.umc.domain.mission.entity;
+package com.example.umc.domain.mapping.entity;
 
+import com.example.umc.domain.mapping.enums.MemberMissionStatus;
+import com.example.umc.domain.mapping.id.MemberMissionId;
 import com.example.umc.domain.member.entity.Member;
+import com.example.umc.domain.mission.entity.Mission;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +28,7 @@ public class MemberMission {
             foreignKey = @ForeignKey(name = "fk_um_mission"))
     private Mission mission;
 
-    @Column(name = "status", length = 30)
-    private String status; // IN_PROGRESS/COMPLETED 등
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", length = 30, nullable = false)
+    private MemberMissionStatus status; // IN_PROGRESS/COMPLETED 등
 }

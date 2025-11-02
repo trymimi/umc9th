@@ -1,4 +1,4 @@
-package com.example.umc.domain.term.entity;
+package com.example.umc.domain.mapping.id;
 
 import jakarta.persistence.Embeddable;
 import lombok.*;

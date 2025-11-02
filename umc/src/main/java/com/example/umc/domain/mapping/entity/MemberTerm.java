@@ -1,6 +1,8 @@
-package com.example.umc.domain.term.entity;
+package com.example.umc.domain.mapping.entity;
 
+import com.example.umc.domain.mapping.id.MemberTermId;
 import com.example.umc.domain.member.entity.Member;
+import com.example.umc.domain.term.entity.Term;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;

@@ -1,5 +1,6 @@
 package com.example.umc.domain.mission.entity;
 
+import com.example.umc.domain.mapping.entity.MemberMission;
 import com.example.umc.domain.mission.enums.MissionStatus;
 import com.example.umc.domain.store.entity.Store;
 import jakarta.persistence.*;
@@ -32,7 +33,7 @@ public class Mission {
     private Integer point;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", length = 20)
+    @Column(name = "status", length = 20, nullable = false)
     private MissionStatus status;
 
     @OneToMany(mappedBy = "mission", fetch = FetchType.LAZY)

@@ -29,7 +29,7 @@ public class Review {
     private Member member;
 
     @Column(name = "rating")
-    private Integer rating;
+    private Float rating;
 
     @Lob
     @Column(name = "content", nullable = false)

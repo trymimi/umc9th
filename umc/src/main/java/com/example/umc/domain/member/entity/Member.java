@@ -2,10 +2,10 @@ package com.example.umc.domain.member.entity;
 
 import com.example.umc.domain.member.enums.Gender;
 import com.example.umc.domain.member.enums.MemberStatus;
-import com.example.umc.domain.mission.entity.MemberMission;
+import com.example.umc.domain.mapping.entity.MemberMission;
 import com.example.umc.domain.review.entity.Review;
-import com.example.umc.domain.support.entity.MemberSupport;
-import com.example.umc.domain.term.entity.MemberTerm;
+import com.example.umc.domain.support.entity.Support;
+import com.example.umc.domain.mapping.entity.MemberTerm;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -55,5 +55,5 @@ public class Member {
     private List<MemberTerm> memberTerms = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-    private List<MemberSupport> supports = new ArrayList<>();
+    private List<Support> supports = new ArrayList<>();
 }
