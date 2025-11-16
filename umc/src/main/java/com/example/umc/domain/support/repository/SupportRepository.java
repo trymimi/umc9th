@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 
-public interface SupportRepository extends JpaRepository<Support, Long> {
+public interface SupportRepository extends JpaRepository<Support, Long>, SupportRepositoryCustom {
     // 내 문의 목록(최신순)
     Page<Support> findByMemberIdOrderByIdDesc(Long memberId, Pageable pageable);
 

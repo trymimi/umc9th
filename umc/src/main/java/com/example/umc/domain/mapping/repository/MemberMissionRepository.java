@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface MemberMissionRepository extends JpaRepository<MemberMission, MemberMissionId> {
+public interface MemberMissionRepository extends JpaRepository<MemberMission, MemberMissionId>, MemberMissionRepositoryCustom {
     // 내가 진행중/완료한 미션 페이징
     Page<MemberMission> findByMemberIdAndStatus(Long memberId, MemberMissionStatus status, Pageable pageable);
 
