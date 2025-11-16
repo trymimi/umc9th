@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
-public interface ReviewRepository extends JpaRepository<Review, Long> {
+public interface ReviewRepository extends JpaRepository<Review, Long>, ReviewRepositoryCustom {
     // 마이페이지: 내 리뷰 페이징(최신순)
     Page<Review> findByMemberIdOrderByIdDesc(Long memberId, Pageable pageable);
 
