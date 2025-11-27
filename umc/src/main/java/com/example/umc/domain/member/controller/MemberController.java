@@ -1,6 +1,6 @@
 package com.example.umc.domain.member.controller;
 
-import com.example.umc.domain.member.dto.MemberListResponseDto;
+import com.example.umc.domain.member.dto.res.MemberListResponseDto;
 import com.example.umc.domain.member.service.MemberService;
 import com.example.umc.global.apiPayload.ApiResponse;
 import com.example.umc.global.apiPayload.code.GeneralSuccessCode;

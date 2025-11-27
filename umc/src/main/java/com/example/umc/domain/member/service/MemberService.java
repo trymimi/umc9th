@@ -1,7 +1,7 @@
 package com.example.umc.domain.member.service;
 
-import com.example.umc.domain.member.dto.MemberListResponseDto;
-import com.example.umc.domain.member.dto.MemberResponseDto;
+import com.example.umc.domain.member.dto.res.MemberListResponseDto;
+import com.example.umc.domain.member.dto.res.MemberResponseDto;
 import com.example.umc.domain.member.entity.Member;
 import com.example.umc.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;

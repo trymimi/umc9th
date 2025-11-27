@@ -1,4 +1,4 @@
-package com.example.umc.domain.member.dto;
+package com.example.umc.domain.member.dto.res;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+// 회원 목록 응답
 @Getter
 @Builder
 @NoArgsConstructor
