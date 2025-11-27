@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Builder
 @NoArgsConstructor
@@ -14,8 +16,10 @@ public class ReviewResponseDto {
     private Long storeId;
     private String storeName;
     private Long memberId;
+    private String memberName;  // 닉네임
     private Float rating;
     private String content;
     private String photo;
+    private LocalDateTime createdAt;  // 작성 날짜
 }
 

@@ -1,7 +1,7 @@
 package com.example.umc.domain.mission.service;
 
+import com.example.umc.domain.mission.converter.MissionConverter;
 import com.example.umc.domain.mission.dto.MissionListResponseDto;
-import com.example.umc.domain.mission.dto.MissionResponseDto;
 import com.example.umc.domain.mission.entity.Mission;
 import com.example.umc.domain.mission.repository.MissionRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,9 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -31,23 +28,12 @@ public class MissionService {
         }
 
         Page<Mission> missionPage = missionRepository.findMissionsWithFilters(storeId, missionStatus, pageable);
+        return MissionConverter.toMissionListResponseDto(missionPage);
+    }
 
-        List<MissionResponseDto> missionDtos = missionPage.getContent().stream()
-                .map(mission -> MissionResponseDto.builder()
-                        .missionId(mission.getId())
-                        .storeId(mission.getStore().getId())
-                        .description(mission.getDescription())
-                        .point(mission.getPoint())
-                        .status(mission.getStatus().name())
-                        .build())
-                .collect(Collectors.toList());
-
-        return MissionListResponseDto.builder()
-                .missions(missionDtos)
-                .currentPage(missionPage.getNumber())
-                .totalPages(missionPage.getTotalPages())
-                .totalElements(missionPage.getTotalElements())
-                .build();
+    public MissionListResponseDto getStoreMissions(Long storeId, Pageable pageable) {
+        Page<Mission> missionPage = missionRepository.findByStoreIdWithPaging(storeId, pageable);
+        return MissionConverter.toMissionListResponseDto(missionPage);
     }
 }
 
