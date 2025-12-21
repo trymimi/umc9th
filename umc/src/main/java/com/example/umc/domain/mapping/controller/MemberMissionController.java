@@ -1,7 +1,7 @@
-package com.example.umc.domain.review.controller;
+package com.example.umc.domain.mapping.controller;
 
-import com.example.umc.domain.review.dto.res.ReviewResDTO;
-import com.example.umc.domain.review.service.ReviewService;
+import com.example.umc.domain.mapping.dto.MemberMissionListResponseDto;
+import com.example.umc.domain.mapping.service.MemberMissionService;
 import com.example.umc.global.annotation.ValidPage;
 import com.example.umc.global.apiPayload.ApiResponse;
 import com.example.umc.global.apiPayload.code.GeneralSuccessCode;
@@ -18,52 +18,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "리뷰", description = "리뷰 관련 API")
+@Tag(name = "회원 미션", description = "회원 미션 관련 API")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/reviews")
-public class ReviewController {
+@RequestMapping("/api/member-missions")
+public class MemberMissionController {
 
-    private final ReviewService reviewService;
+    private final MemberMissionService memberMissionService;
 
-    @Operation(summary = "리뷰 목록 조회", description = "조건에 맞는 리뷰 목록을 페이징하여 조회합니다.")
+    @Operation(summary = "회원 미션 목록 조회", description = "조건에 맞는 회원 미션 목록을 페이징하여 조회합니다.")
     @ApiResponses(value = {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "조회 성공")
     })
     @GetMapping
-    public ApiResponse<ReviewResDTO.ReviewPreViewListDTO> getReviews(
-            @Parameter(description = "가게 ID") @RequestParam(required = false) Long storeId,
-            @Parameter(description = "가게 이름") @RequestParam(required = false) String storeName,
-            @Parameter(description = "평점") @RequestParam(required = false) Integer rating,
+    public ApiResponse<MemberMissionListResponseDto> getMemberMissions(
+            @Parameter(description = "회원 ID") @RequestParam(required = false) Long memberId,
+            @Parameter(description = "미션 상태") @RequestParam(required = false) String status,
             @Parameter(description = "페이지 번호 (1 이상)") @ValidPage @RequestParam int page,
             @Parameter(description = "페이지 크기") @RequestParam(defaultValue = "10") int size) {
 
-        Integer minRating = null;
-        Integer maxRating = null;
-        if (rating != null) {
-            minRating = rating;
-            if (rating < 5) {
-                maxRating = rating + 1;
-            }
-        }
-
         Pageable pageable = PageRequest.of(page - 1, size);
-        ReviewResDTO.ReviewPreViewListDTO response = reviewService.getReviews(storeId, storeName, minRating, maxRating, pageable);
+        MemberMissionListResponseDto response = memberMissionService.getMemberMissions(memberId, status, pageable);
         return ApiResponse.onSuccess(GeneralSuccessCode.OK, response);
     }
 
-    @Operation(summary = "내가 작성한 리뷰 목록 조회", description = "특정 회원이 작성한 리뷰 목록을 페이징하여 조회합니다.")
+    @Operation(summary = "내가 진행중인 미션 목록 조회", description = "특정 회원이 진행중인 미션 목록을 페이징하여 조회합니다.")
     @ApiResponses(value = {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "조회 성공")
     })
-    @GetMapping("/members/{memberId}")
-    public ApiResponse<ReviewResDTO.ReviewPreViewListDTO> getMyReviews(
+    @GetMapping("/members/{memberId}/ongoing")
+    public ApiResponse<MemberMissionListResponseDto> getMyOngoingMissions(
             @Parameter(description = "회원 ID") @PathVariable Long memberId,
             @Parameter(description = "페이지 번호 (1 이상)") @ValidPage @RequestParam int page,
             @Parameter(description = "페이지 크기") @RequestParam(defaultValue = "10") int size) {
 
         Pageable pageable = PageRequest.of(page - 1, size);
-        ReviewResDTO.ReviewPreViewListDTO response = reviewService.getMyReviews(memberId, pageable);
+        MemberMissionListResponseDto response = memberMissionService.getMyOngoingMissions(memberId, pageable);
         return ApiResponse.onSuccess(GeneralSuccessCode.OK, response);
     }
 }

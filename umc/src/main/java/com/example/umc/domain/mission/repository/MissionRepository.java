@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface MissionRepository extends JpaRepository<Mission, Long> {
+public interface MissionRepository extends JpaRepository<Mission, Long>, MissionRepositoryCustom {
     // 현재 선택 된 지역에서 도전 가능한 미션 목록. 페이징 포함
     Page<Mission> findByStoreRegionCodeAndStatus(String regionCode, MissionStatus status, Pageable pageable);
 
@@ -22,6 +22,10 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
     // 특정 스토어의 미션 조회
     @Query("SELECT m FROM Mission m WHERE m.store.id = :storeId")
     List<Mission> findByStoreId(@Param("storeId") Long storeId);
+
+    // 특정 스토어의 미션 조회 (페이징)
+    @Query("SELECT m FROM Mission m WHERE m.store.id = :storeId ORDER BY m.id DESC")
+    Page<Mission> findByStoreIdWithPaging(@Param("storeId") Long storeId, Pageable pageable);
 
     // 상태와 스토어로 미션 조회 (페이징)
     @Query("SELECT m FROM Mission m WHERE m.status = :status AND m.store.id = :storeId")

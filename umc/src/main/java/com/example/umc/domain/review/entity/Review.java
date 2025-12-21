@@ -4,6 +4,10 @@ import com.example.umc.domain.member.entity.Member;
 import com.example.umc.domain.store.entity.Store;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
 
 @Entity @Table(name = "reviews", indexes = {
         @Index(name="ix_review_store", columnList="store_id"),
@@ -12,6 +16,7 @@ import lombok.*;
 @Getter @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@EntityListeners(AuditingEntityListener.class)
 public class Review {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,4 +42,8 @@ public class Review {
 
     @Column(name = "photo", length = 500)
     private String photo;
+
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 }
