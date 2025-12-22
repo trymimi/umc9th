@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface MissionRepository extends JpaRepository<Mission, Long>, MissionRepositoryCustom {
     // 현재 선택 된 지역에서 도전 가능한 미션 목록. 페이징 포함
-    Page<Mission> findByStoreRegionCodeAndStatus(String regionCode, MissionStatus status, Pageable pageable);
+    Page<Mission> findByStoreLocationAndStatus(String location, MissionStatus status, Pageable pageable);
 
     // =====JPQL=====
     

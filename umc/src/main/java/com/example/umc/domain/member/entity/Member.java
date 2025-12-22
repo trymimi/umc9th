@@ -2,6 +2,7 @@ package com.example.umc.domain.member.entity;
 
 import com.example.umc.domain.member.enums.Gender;
 import com.example.umc.domain.member.enums.MemberStatus;
+import com.example.umc.domain.member.enums.Role;
 import com.example.umc.domain.mapping.entity.MemberMission;
 import com.example.umc.domain.review.entity.Review;
 import com.example.umc.domain.support.entity.Support;
@@ -25,6 +26,15 @@ public class Member {
     @Column(name = "name")
     private String name;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     private Gender gender;
@@ -34,6 +44,9 @@ public class Member {
 
     @Column(name = "address", length = 255)
     private String address;
+
+    @Column(name = "detail_address", length = 255)
+    private String detailAddress;
 
     @Column(name = "favorite_food", length = 100)
     private String favoriteFood;
